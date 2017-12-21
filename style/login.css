@@ -1,0 +1,23 @@
+td.loginForm {
+    height: 100px;
+    vertical-align: middle;
+}
+
+input.loginForm {
+    width: 100%;
+}
+
+input#loginButton {
+    background-color: #BBBBBB;
+}
+
+input#loginButton:hover {
+    background-color: #7A7A7A;
+    color: whitesmoke;
+}
+
+div#error {
+    font-size: 15px;
+    height: 30px;
+    color: rgb(151, 0, 0);
+}

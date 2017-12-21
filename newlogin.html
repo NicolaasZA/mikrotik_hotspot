@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="login">
+
+<head>
+	<title>Koti ni Eden Hotspot | Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+
+	<meta name="author" content="FCE">
+	<meta name="description" content="KnE internet hotspot status page.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="style/global.css" />
+	<link rel="stylesheet" type="text/css" href="style/login.css" />
+	<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+	$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+		// Login function <!--
+		function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+		}
+				//-->
+	</script> $(endif)
+
+	<div align="center">
+		<!-- Language links -->
+		<!--<a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)">Latviski</a>-->
+	</div>
+
+	<div align="center" style="margin-top: 10%;">
+		<div id="announce" align="center">
+			Please log on to use the internet hotspot service.
+			<br />
+			<!--$(if trial == 'yes')Free trial available, <a style="color: #FF8080" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)-->
+		</div>
+		<br />
+
+		<form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+			<table class="dialog" id="loginDialog" cellpadding="0" cellspacing="0">
+				$(if error)
+				<tr>
+					<td class="dialogHead" align="center" colspan="2">
+						<div id="error">$(error)This is a generic error!</div>
+					</td>
+				</tr>
+				$(endif)
+				</tr>
+				<tr>
+					<td class="dialogLogo" align="center" valign="bottom">
+						<a href="http://www.fce.org.za" target="_blank">
+							<img id="dialogLogo" src="style/img/site icon.png" alt="FCE" />
+						</a>
+					</td>
+					<td class="dialogContent">
+						<input type="hidden" name="dst" value="$(link-orig)" />
+						<input type="hidden" name="popup" value="true" />
+
+						<table class="loginForm">
+							<tr>
+								<td>
+									<input class="loginForm" type="text" name="username" placeholder="username" value="$(username)" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input class="loginForm" type="password" name="password" placeholder="password" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input class="loginForm" id="loginButton" type="submit" value="Log In">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<br />
+		<div id="smallText">Powered by MikroTik RouterOS</div>
+	</div>
+
+	<script type="text/javascript">
+		//<!--
+		document.login.username.focus();
+		//-->
+	</script>
+</body>
+
+</html>

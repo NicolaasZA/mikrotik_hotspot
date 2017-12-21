@@ -1,0 +1,98 @@
+<html>
+
+<head>
+   <title>Koti ni Eden Hotspot | Logged Out</title>
+   <!--
+   <meta http-equiv="refresh" content="7;url=$(link-login)">
+   -->
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="pragma" content="no-cache" />
+   <meta http-equiv="expires" content="-1" />
+
+   <meta name="author" content="FCE">
+   <meta name="description" content="KnE internet hotspot logout page.">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="stylesheet" type="text/css" href="style/global.css" />
+   <link rel="stylesheet" type="text/css" href="style/status.css" />
+   <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+   <script language="JavaScript">
+      //<!--
+      function openLogin() {
+         if (window.name != 'hotspot_logout') return true;
+         open('$(link-login)', '_blank', '');
+         window.close();
+         return false;
+      }
+
+      // Format the bytes shown to a more understandable form.
+      function readableBytes(pBytes) {
+         var s = ['bytes','KB', 'MB','GB','TB'];
+         var e = Math.floor(Math.log(pBytes)/Math.log(1024));
+         return (pBytes/Math.pow(1024,Math.floor(e))).toFixed(2) + s[e];
+      }
+
+      //-->
+   </script>
+
+    <div width="100%" style="margin-top: 0px;" align="center">
+      <div id="announce">You have just logged out.</div>
+      <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+         <table class="dialog" cellpadding="0" cellspacing="0">
+            <tr>
+               <td align="right">Username:</td>
+               <td>$(username)</td>
+            </tr>
+            <!--
+            <tr>
+               <td align="right">IP address:</td>
+               <td>$(ip)</td>
+            </tr>
+            <tr>
+               <td align="right">MAC address:</td>
+               <td>$(mac)</td>
+            </tr>
+            -->
+            <tr>
+               <td align="right">Session duration:</td>
+               <td>$(uptime)</td>
+            </tr>
+            <tr>
+               <td align="right">Total data used:</td>
+               <td>
+                  <script>document.write(readableBytes($(bytes-in)+$(bytes-out)));</script>
+                  <noscript>$(bytes-in-nice) / $(bytes-out-nice)</noscript>
+               </td>
+            </tr>
+            <tr>
+               <td align="right">Data remaining:</td>
+               $(if remain-bytes-total)
+                  <td>
+                     <script>document.write(readableBytes($(remain-bytes-total)));</script>
+                     <noscript><a href="$(link-orig)/userman">[Check balance]</a></noscript>
+                  </td>
+               $(else)
+                  <td>Uncapped</td>
+               $(endif)
+            </tr>
+            $(if session-time-left)
+            <tr>
+               <td align="right">Time left:</td>
+               <td>$(session-time-left)</td>
+            </tr>
+            $(endif)
+            <tr>
+               <td class="dialogFoot" colspan="2" align="center">
+                  <input class="dialogButton" type="submit" value="Log In">
+               </td>
+            </tr>
+         </table>
+         <!--<div id="smallText">You will be redirected to login in 7 seconds.</div>-->
+      </form>
+    </div>
+</body>
+
+</html>

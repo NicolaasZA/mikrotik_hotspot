@@ -1,0 +1,102 @@
+/*
+    Styling rules applying in two or more pages will be aggregated here to prevent repetition.
+*/
+
+html {
+    background-image: url('img/i.jpg'), url('img/f.jpg');
+    font-family: "Bookman Old Style", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 10px;
+    background-blend-mode: hard-light;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+html#login {
+    /*background: url('img/login.jpg') no-repeat center center fixed;*/
+    /*
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    */
+}
+
+body {
+    /* Center login dialog on small 320x480 screens; Practically unnoticable on bigger screens. */
+    margin-left: 2px;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+    /*border: none;*/
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+textarea,
+input,
+select {
+    background-color: #FDFBFB;
+    border: 1px solid rgba(187, 187, 187, 0.7);
+    border-radius: 12px;
+    text-indent: 10px;
+    padding: 2px;
+    margin: 1px;
+    font-size: 16px;
+    color: #808080;
+}
+
+table.dialog {
+    /*background-color: whitesmoke;*/
+    border-radius: 9px 0px 9px 0px;
+    border: none;
+    /*box-shadow: 0px 4px 18px 3px rgba(71, 41, 19, 0.8);*/
+    /*box-shadow: 0px 4px 18px 1px rgba(71, 41, 19, 0.2);*/
+    color: #7A7A7A;
+    padding: 0px;
+    width: 300px;
+}
+
+table#loginDialog {
+    /*width: 360px;*/
+    font-size: 18px;
+}
+
+td.dialogHead {
+    height: 30px;
+    font-size: 15px;
+}
+
+td.dialogLogo {
+    width: 120px;
+    vertical-align: middle;
+}
+
+td.dialogContent {}
+
+td.dialogFoot {
+    height: 36px;
+    padding: 0px;
+    font-size: 17px;
+}
+
+div#announce {
+    text-shadow: 0px 0px 6px #98623D;
+    color: rgba(245, 245, 245, 0.8);
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+div#smallText {
+    color: rgba(245, 245, 245, 0.8);
+    text-shadow: 0px 0px 3px #98623D;
+    font-size: 10px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+    <title>Koti ni Eden Hotspot | Status</title>
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+
+    <meta name="author" content="FCE">
+    <meta name="description" content="KnE internet hotspot status page.">
+
+    <link rel="stylesheet" type="text/css" href="style/global.css" />
+    <link rel="stylesheet" type="text/css" href="style/status.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script language="JavaScript">
+      //<!--
+      //$(if advert-pending == 'yes')
+      var popup = '';
+
+      function focusAdvert() {
+         if (window.focus) popup.focus();
+      }
+
+      function openAdvert() {
+         popup = open('$(link-advert)', 'hotspot_advert', '');
+         setTimeout("focusAdvert()", 1000);
+      }
+      //$(endif)
+      
+      function openLogout() {
+         if (window.name != 'hotspot_status') return true;
+         open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+         window.close();
+         return false;
+      }
+
+      // Format the bytes shown to a more understandable form.
+      function readableBytes(pBytes) {
+         var s = ['bytes','KB', 'MB','GB','TB'];
+         var e = Math.floor(Math.log(pBytes)/Math.log(1024));
+         return (pBytes/Math.pow(1024,Math.floor(e))).toFixed(2) + s[e];
+      }
+      //-->
+   </script>
+</head>
+
+<body id="status"> 
+   <div width="100%" style="margin-top: 0px;" align="center">
+      <div id="announce">
+         $(if login-by == 'trial')
+            Welcome trial user!
+         $(elif login-by != 'mac')
+            Welcome $(username)!
+         $(endif)
+      </div>
+      <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+         <table class="dialog" cellpadding="0" cellspacing="0">
+            <tr>
+               <td align="right">Your IP address:</td>
+               <td>$(ip)</td>
+            </tr>
+            <tr>
+               <td align="right">Data used:</td>
+               <td>
+                  <script>document.write(readableBytes($(bytes-in)+$(bytes-out)));</script>
+                  <noscript>$(bytes-in-nice) / $(bytes-out-nice)</noscript>
+               </td>
+            </tr>
+            <tr>
+               <td align="right">Data remaining:</td>
+               $(if remain-bytes-total)
+                  <td>
+                     <script>document.write(readableBytes($(remain-bytes-total)));</script>
+                     <noscript><a href="$(link-orig)/userman">[Check balance]</a></noscript>
+                  </td>
+               $(else)
+                  <td>Uncapped</td>
+               $(endif)
+            </tr>
+            $(if session-time-left)
+               <tr>
+                  <td align="right">Time used/remaining:</td>
+                  <td>$(uptime) / $(session-time-left)</td>
+               </tr>
+            $(else)
+               <tr>
+                  <td align="right">Connected:</td>
+                  <td>$(uptime)</td>
+               </tr>
+            $(endif)
+            $(if blocked == 'yes')
+               <tr>
+                  <td align="right">Status:</td>
+                  <td>
+                     <div style="color: #FF8080">
+                           <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
+                     </div>
+                  </td>
+               </tr>
+            $(elif refresh-timeout-secs)
+               <tr>
+                  <td id="statsRefresh" colspan="2" align="center">This page will auto-refresh in $(refresh-timeout-secs) seconds.</td>
+               </tr>
+            $(endif)
+            $(if login-by-mac != 'yes')
+               <tr>
+                  <!--
+                  <td colspan="2" align="center">
+                     <a href="http://hotspot.fce.org/user" target="_blank">Check detailed balance</a>
+                  </td>
+                  -->
+               </tr>
+               <tr>
+                  <td class="dialogFoot" colspan="2" align="center">
+                     <input class="dialogButton" type="submit" value="Logout">
+                  </td>
+               </tr>
+            $(endif)
+         </table>
+      </form>
+      </div>
+   </body>
+
+</html>
