@@ -4,20 +4,25 @@ td.loginForm {
 }
 
 input.loginForm {
-    width: 100%;
+    width: 139px;
 }
 
 input#loginButton {
     background-color: #BBBBBB;
+    width: 100px;
+    align-self: right;
+    text-indent: 0px;
+    margin-left: 40px;
 }
 
 input#loginButton:hover {
     background-color: #7A7A7A;
-    color: whitesmoke;
+    color: #f5f5f5;
 }
 
 div#error {
     font-size: 15px;
     height: 30px;
-    color: rgb(151, 0, 0);
+    color: #ff5b5b;
+    text-shadow: 0px 1px 3px #98623d;
 }

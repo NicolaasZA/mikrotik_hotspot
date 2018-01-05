@@ -3,22 +3,12 @@
 */
 
 html {
-    background-image: url('img/i.jpg'), url('img/f.jpg');
+    background-image: url('img/bg.jpg');
     font-family: "Bookman Old Style", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 10px;
     background-blend-mode: hard-light;
     background-repeat: no-repeat;
     background-position: center;
-}
-
-html#login {
-    /*background: url('img/login.jpg') no-repeat center center fixed;*/
-    /*
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    */
 }
 
 body {
@@ -40,17 +30,22 @@ img {
     border: none;
 }
 
+img#dialogLogo {
+    width: 100%;
+    height: auto;
+}
+
 textarea,
 input,
 select {
-    background-color: #FDFBFB;
-    border: 1px solid rgba(187, 187, 187, 0.7);
+    background-color: rgba(253, 251, 251, 0.4);
+    border: 0px solid rgba(187, 187, 187, 0.7);
     border-radius: 12px;
     text-indent: 10px;
-    padding: 2px;
+    padding: 1px 0px 4px 0px;
     margin: 1px;
     font-size: 16px;
-    color: #808080;
+    color: #503325;
 }
 
 table.dialog {
@@ -75,7 +70,7 @@ td.dialogHead {
 }
 
 td.dialogLogo {
-    width: 120px;
+    width: 150px;
     vertical-align: middle;
 }
 
